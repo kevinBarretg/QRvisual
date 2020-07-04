@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         integrator.setCaptureActivity(CaptureAct.class);
         integrator.setOrientationLocked(false);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Scanning Code");
+        integrator.setPrompt("Escaneando su código");
         integrator.initiateScan();
     }
 
@@ -50,20 +50,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(result.getContents() != null){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(result.getContents());
-                builder.setTitle("Scanning Result");
-                builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
+                builder.setTitle("Resultado");
+                builder.setNeutralButton("Visitar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
                         startActivity(browserIntent);
                     }
                 });
-                builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Escanear de nuevo", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int witch){
                        scanCode();
                    }
-                }).setNegativeButton("finish", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("Finalizar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.show();
             }
             else {
-                Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "No hay resultados", Toast.LENGTH_LONG).show();
             }
         }else {
             super.onActivityResult(requestCode, resultCode, data);
